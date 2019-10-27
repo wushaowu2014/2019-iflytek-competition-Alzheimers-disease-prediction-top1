@@ -4,13 +4,13 @@
 
 
 1、初赛[初赛base在这里](https://github.com/wushaowu2014/2019-iflytek-competition-Alzheimer-s-disease-prediction)<br>
-包括赛题介绍，该base对于不同版本的lgb跑出来结果有点差别，加上异常值处理，可以跑到85<br>
+包括赛题介绍，该base对于不同版本的lgb跑出来结果有所差别，加上异常值处理，亲测可以跑到85<br>
 2、赛题特点
-小样本、高维度、难度大
+小样本、高维度、难度大、价值性强
 3、特征部分
-特征维度包括：个人信息、整个音频文件的统计量、转写文本、LLD音频，本方案主要对后两者进行提取。<br>
+特征维度包括：个人信息、整个音频文件的统计量、转写文本以及LLD音频四个维度，本方案主要对后两者进行提取。<br>
 1) 转写文本核心代码：时间特征和说话内容的拼接
-`python
+```python
 tsv_path_lists=os.listdir('data_final/tsv2/')
 tsv_feats=[] ##用于存放tsv特征
 tsv_value=[] ##用于存放说话内容
@@ -35,5 +35,30 @@ for path in tqdm(tsv_path_lists): ##遍历每个文件，提取特征
     tsv_value.append([path[:-4],','.join(z['value'])])
 tsv_feats=pd.DataFrame(tsv_feats)
 tsv_feats.columns=['uuid']+['tsv_feats{}'.format(i) for i in range(tsv_feats.shape[1]-1)]
-`
-
+```
+2) LLD音频部分：
+```python
+egemaps_path_lists=os.listdir('data_final/egemaps2/')
+egemaps_feats=[] ##用于存放egemaps特征
+for path in tqdm(egemaps_path_lists): ##遍历每个文件，提取特征
+    z=pd.read_csv('data_final/egemaps2/'+path,sep=';')
+    z=z.drop(['name','frameTime'],axis=1)
+    t=os.path.getmtime('data_final/egemaps2/'+path) #时间
+    tt=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(t))
+    zz=np.diff(z,axis=0)
+    egemaps_feats.append([path[:-4]]+\
+                         list(z.mean(axis=0))+\
+                         list(z.std(axis=0))+\
+                         list(z.min(axis=0))+\
+                         list(z.max(axis=0))+\
+                         list(z.median(axis=0))+\
+                         list(zz.mean(axis=0))+\
+                         list(zz.std(axis=0))+\
+                         list(zz.min(axis=0))+\
+                         list(zz.max(axis=0))+\
+                         list(np.sum(zz,axis=0))
+                         )
+```
+4、模型<br>
+最终模型是xgb+bert,最后有一个后处理部分,就是把初赛结果加进来.<br>
+注：
