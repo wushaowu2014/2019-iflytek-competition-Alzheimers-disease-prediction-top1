@@ -61,8 +61,13 @@ for path in tqdm(egemaps_path_lists): ##遍历每个文件，提取特征
 ```
 4、模型<br>
 最终模型是xgb+bert,最后有一个后处理部分,就是把初赛结果加进来.<br>
-注：<br>
-
+注：对字段uuid的分析，这里可以发现有几组id是一样的，代码如下：<br>
+```python
+data1['id1']=data1['uuid'].apply(lambda x:int(x.split('_')[1]))
+data2=data1.groupby(['id1'],as_index=False)['id1'].agg({'id1_count':'count'})
+data3=data1[data1.id1.isin(data2[data2.id1_count>1]['id1'].tolist())]
+```
 5、Conference<br>
-https://github.com/wushaowu2014/keras-bert
-http://challenge.xfyun.cn/2019/gamedetail?type=detail/alzheimer
+https://github.com/wushaowu2014/keras-bert  
+http://challenge.xfyun.cn/2019/gamedetail?type=detail/alzheimer  
+
