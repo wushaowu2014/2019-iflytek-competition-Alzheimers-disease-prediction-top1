@@ -9,9 +9,9 @@
 小样本、高维度、难度大
 3、特征部分
 特征维度包括：个人信息、整个音频文件的统计量、转写文本、LLD音频，本方案主要对后两者进行提取。
-
+转写文本核心代码：
 ```python
-tsv_path_lists=os.listdir('data_final/tsv2/') #大小：206
+tsv_path_lists=os.listdir('data_final/tsv2/')
 tsv_feats=[] ##用于存放tsv特征
 tsv_value=[] ##用于存放说话内容
 for path in tqdm(tsv_path_lists): ##遍历每个文件，提取特征
