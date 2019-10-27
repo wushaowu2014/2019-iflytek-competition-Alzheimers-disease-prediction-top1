@@ -4,7 +4,7 @@
 
 
 1、初赛[初赛base在这里](https://github.com/wushaowu2014/2019-iflytek-competition-Alzheimer-s-disease-prediction)<br>
-包括赛题介绍，该base对于不同版本的lgb跑出来结果有所差别，加上异常值处理，亲测可以跑到85<br>
+>>包括赛题介绍，该base对于不同版本的lgb跑出来结果有所差别，加上异常值处理，亲测可以跑到85<br>
 
 2、赛题特点
 小样本、高维度、难度大、价值性强<br>
