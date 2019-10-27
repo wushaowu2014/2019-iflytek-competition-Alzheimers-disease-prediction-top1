@@ -10,7 +10,7 @@
 3、特征部分
 特征维度包括：个人信息、整个音频文件的统计量、转写文本、LLD音频，本方案主要对后两者进行提取。<br>
 1) 转写文本核心代码：时间特征和说话内容的拼接
-```python
+`python
 tsv_path_lists=os.listdir('data_final/tsv2/')
 tsv_feats=[] ##用于存放tsv特征
 tsv_value=[] ##用于存放说话内容
@@ -35,5 +35,5 @@ for path in tqdm(tsv_path_lists): ##遍历每个文件，提取特征
     tsv_value.append([path[:-4],','.join(z['value'])])
 tsv_feats=pd.DataFrame(tsv_feats)
 tsv_feats.columns=['uuid']+['tsv_feats{}'.format(i) for i in range(tsv_feats.shape[1]-1)]
-```
+`
 
