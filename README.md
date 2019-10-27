@@ -5,8 +5,10 @@
 
 1、初赛[初赛base在这里](https://github.com/wushaowu2014/2019-iflytek-competition-Alzheimer-s-disease-prediction)<br>
 包括赛题介绍，该base对于不同版本的lgb跑出来结果有所差别，加上异常值处理，亲测可以跑到85<br>
+
 2、赛题特点
 小样本、高维度、难度大、价值性强<br>
+
 3、特征部分
 特征维度包括：个人信息、整个音频文件的统计量、转写文本以及LLD音频四个维度，本方案主要对后两者进行提取。<br>
 1） 转写文本核心代码：时间特征和说话内容的拼接
