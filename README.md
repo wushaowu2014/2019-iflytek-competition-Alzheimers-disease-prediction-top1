@@ -61,4 +61,7 @@ for path in tqdm(egemaps_path_lists): ##遍历每个文件，提取特征
 ```
 4、模型<br>
 最终模型是xgb+bert,最后有一个后处理部分,就是把初赛结果加进来.<br>
-注：
+注：<br>
+
+Conference
+https://github.com/wushaowu2014/keras-bert
