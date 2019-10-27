@@ -1,5 +1,5 @@
 # 2019-iflytek-competition-Alzheimers-disease-prediction-top1
-2019年科大讯飞开发者大赛——阿尔茨海默综合症预测挑战赛方案<br>
+2019年科大讯飞开发者大赛——阿尔茨海默综合症预测挑战赛冠军方案<br>
 [赛题链接](http://challenge.xfyun.cn/2019/gamedetail?type=detail/alzheimer)
 
 
