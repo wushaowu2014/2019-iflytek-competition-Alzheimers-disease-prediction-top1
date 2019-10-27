@@ -67,7 +67,7 @@ for path in tqdm(egemaps_path_lists): ##遍历每个文件，提取特征
 ```python
 data1['id1']=data1['uuid'].apply(lambda x:int(x.split('_')[1]))
 data2=data1.groupby(['id1'],as_index=False)['id1'].agg({'id1_count':'count'})
-data3=data1[data1.id1.isin(data2[data2.id1_count>1]['id1'].tolist())]
+data3=data1[data1.id1.isin(data2[data2.id1_count>1].id1.tolist())]
 ```
 5、Conference<br>
 https://github.com/wushaowu2014/keras-bert  
